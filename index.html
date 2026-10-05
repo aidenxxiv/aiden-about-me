@@ -202,6 +202,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
     }
+    .likes-item,
     .tag {
       background: rgba(15, 23, 42, 0.95);
       border: 1px solid rgba(31, 41, 55, 0.9);
@@ -212,6 +213,7 @@
       text-align: center;
       transition: all 0.25s ease;
     }
+    .likes-item:hover,
     .tag:hover {
       background: rgba(79, 124, 255, 0.18);
       border-color: rgba(79, 124, 255, 0.6);
@@ -253,70 +255,61 @@
 
     <section class="card" data-panel="likes" hidden>
       <div class="card-header">
-        <div class="card-title">Stuff I'm Into</div>
-        <div class="pill">Music • Anime • Style • Energy</div>
+        <div class="card-title">Stuff I’m Into</div>
+        <div class="pill">Music • Anime • Football • Style • Vibe</div>
       </div>
 
       <div class="card-body">
 
         <div class="likes-group">
-          <h3 class="likes-title">Music & Artists</h3>
+          <h3 class="likes-title">Music &amp; Artists</h3>
           <div class="likes-grid">
-            <div class="tag">Drake</div>
-            <div class="tag">Brent Faiyaz</div>
-            <div class="tag">Bryson Tiller</div>
-            <div class="tag">Giveon</div>
-            <div class="tag">Odeal</div>
+            <div class="likes-item">Drake</div>
+            <div class="likes-item">Brent Faiyaz</div>
+            <div class="likes-item">Bryson Tiller</div>
+            <div class="likes-item">Giveon</div>
+            <div class="likes-item">Odeal</div>
           </div>
         </div>
 
         <div class="likes-group">
           <h3 class="likes-title">Anime</h3>
           <div class="likes-grid">
-            <div class="tag">Bleach</div>
-            <div class="tag">Tensura</div>
-            <div class="tag">Seven Deadly Sins</div>
+            <div class="likes-item">Bleach</div>
+            <div class="likes-item">Tensura</div>
+            <div class="likes-item">Seven Deadly Sins</div>
           </div>
         </div>
 
         <div class="likes-group">
           <h3 class="likes-title">Football</h3>
           <div class="likes-grid">
-            <div class="tag">FC 26</div>
-            <div class="tag">eFootball</div>
-            <div class="tag">Lamine Yamal</div>
-            <div class="tag">FC Barcelona</div>
+            <div class="likes-item">FC Barcelona</div>
+            <div class="likes-item">Lamine Yamal</div>
+            <div class="likes-item">FC 26</div>
+            <div class="likes-item">eFootball</div>
           </div>
         </div>
 
         <div class="likes-group">
-          <h3 class="likes-title">Style & Aesthetic</h3>
+          <h3 class="likes-title">Style &amp; Aesthetic</h3>
           <div class="likes-grid">
-            <div class="tag">Dark mode</div>
-            <div class="tag">Minimal layouts</div>
-            <div class="tag">Matte black</div>
-            <div class="tag">Clean fits</div>
-            <div class="tag">Low-noise UI</div>
+            <div class="likes-item">Dark mode</div>
+            <div class="likes-item">Minimal layouts</div>
+            <div class="likes-item">Matte black</div>
+            <div class="likes-item">Clean fits</div>
+            <div class="likes-item">Low-noise UI</div>
           </div>
         </div>
 
         <div class="likes-group">
-          <h3 class="likes-title">Tech</h3>
+          <h3 class="likes-title">Vibe &amp; Energy</h3>
           <div class="likes-grid">
-            <div class="tag">iPhone</div>
-            <div class="tag">Minimal widgets</div>
-            <div class="tag">Smooth animations</div>
-          </div>
-        </div>
-
-        <div class="likes-group">
-          <h3 class="likes-title">Vibe & Energy</h3>
-          <div class="likes-grid">
-            <div class="tag">Calm</div>
-            <div class="tag">Focused</div>
-            <div class="tag">Low-key</div>
-            <div class="tag">Quiet confidence</div>
-            <div class="tag">Late-night playlists</div>
+            <div class="likes-item">Calm</div>
+            <div class="likes-item">Focused</div>
+            <div class="likes-item">Low-key</div>
+            <div class="likes-item">Quiet confidence</div>
+            <div class="likes-item">Late-night playlists</div>
           </div>
         </div>
 
