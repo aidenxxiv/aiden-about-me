@@ -1,3 +1,93 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0b0c"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon.svg"><title>Aiden — About Me</title><style>
-:root{--bg:#0b0b0c;--card:#181819;--line:#303033;--text:#f3f3f3;--muted:#a7a7ab;--soft:#19294e}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:12px}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:14px}main{max-width:720px;margin:auto}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;margin-bottom:12px}.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}h1{font-size:32px;margin:5px 0}.sub{color:var(--muted);line-height:1.5;margin:0}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tabs a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 17px;border-radius:999px;background:#151516;color:#eee;text-decoration:none;font-size:14px}.tabs a:active,.tabs a:focus{background:var(--soft);color:#78a2ff}.section{scroll-margin-top:12px}.item{display:flex;justify-content:space-between;gap:18px;padding:14px 0;border-bottom:1px solid #29292b}.item:last-child{border-bottom:0}.label{color:var(--muted);font-size:14px}.value{text-align:right;max-width:66%;font-size:14px}details{border:1px solid var(--line);background:#151516;border-radius:15px;margin-top:10px;overflow:hidden}summary{cursor:pointer;list-style:none;padding:15px;font-size:15px;display:flex;justify-content:space-between;align-items:center}summary::-webkit-details-marker{display:none}summary::after{content:"›";color:#888;font-size:20px}details[open] summary::after{transform:rotate(90deg)}.detail{padding:0 15px 15px;color:#c8c8cc;font-size:14px;line-height:1.55}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.chip{border:1px solid var(--line);background:#151516;border-radius:999px;padding:8px 12px;font-size:13px;color:#ddd}@media(max-width:480px){body{padding:10px}.item{flex-direction:column;gap:6px}.value{text-align:left;max-width:100%}}
-</style></head><body><main><div class="card"><div class="eyebrow">Personal Profile</div><h1>Aiden</h1><p class="sub">A little about me — without getting way too personal.</p></div><nav class="tabs" aria-label="Profile sections"><a href="#me">Me</a><a href="#likes">Stuff I Like</a><a href="#quick">Quick Picks</a><a href="#vibe">My Vibe</a></nav><section id="me" class="card section"><div class="eyebrow">What I'm Like</div><div class="item"><div class="label">Communication</div><div class="value">Pretty direct. I'd rather just say what I mean.</div></div><div class="item"><div class="label">Personality</div><div class="value">Calm, observant, and kinda private.</div></div><div class="item"><div class="label">Conversation</div><div class="value">Real conversations &gt; forced small talk.</div></div><div class="item"><div class="label">My vibe</div><div class="value">Low-key, clean, simple, and not trying too hard.</div></div><div class="item"><div class="label">What matters</div><div class="value">Respect, honesty, consistency, and being yourself.</div></div></section><section id="likes" class="card section"><div class="eyebrow">Stuff I Actually Like</div><details><summary>Gaming</summary><div class="detail">Mostly FC 26 and eFootball. I like games where you actually have to think instead of doing the same thing over and over.</div></details><details><summary>Anime</summary><div class="detail">Bleach is one of my favorites. I'm into anime with good characters, storylines, and moments that actually hit.</div></details><details><summary>Music</summary><div class="detail">Mostly R&amp;B and chill stuff. Drake, Brent Faiyaz, Bryson Tiller, Giveon, Khalid, and similar vibes.</div></details><details><summary>Style &amp; aesthetics</summary><div class="detail">Darker, clean, minimal stuff. Nothing too loud or overdone.</div></details></section><section id="quick" class="card section"><div class="eyebrow">Quick Picks</div><div class="chips"><span class="chip">FC 26</span><span class="chip">eFootball</span><span class="chip">Bleach</span><span class="chip">R&amp;B</span><span class="chip">Dark aesthetics</span><span class="chip">Clean design</span></div><details><summary>People I get along with</summary><div class="detail">Someone who can joke around, communicate normally, respect boundaries, and actually be genuine. No fake energy.</div></details><details><summary>Ideal vibe</summary><div class="detail">Good music, something fun to do, good food, and just being around people I'm comfortable with.</div></details></section><section id="vibe" class="card section"><div class="eyebrow">My Vibe</div><div class="item"><div class="label">Privacy</div><div class="value">I'm cool with sharing interests and personality. The really personal stuff stays personal.</div></div><div class="item"><div class="label">Trust</div><div class="value">I'd rather build trust naturally than tell someone everything right away.</div></div><div class="item"><div class="label">Drama</div><div class="value">Not really my thing. If something's wrong, just talk about it.</div></div><div class="item"><div class="label">Energy</div><div class="value">Good conversations &gt; trying to impress each other.</div></div></section></main></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0b0c"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon.svg"><link rel="icon" href="icon.svg" type="image/svg+xml"><title>Aiden – About Me</title><style>
+:root{--bg:#0b0b0c;--card:#181819;--line:#303033;--text:#f3f3f3;--muted:#a7a7ab;--soft:#19294e;--text-main:#f3f3f3;--text-muted:#a7a7ab;--radius-md:8px}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:12px}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:14px}main{max-width:720px;margin:auto}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;margin-bottom:12px}.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.card-title{font-size:18px;font-weight:600}.pill{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);background:rgba(79,124,255,.1);padding:4px 10px;border-radius:12px}.card-body{display:flex;flex-direction:column;gap:12px}.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}h1{font-size:32px;margin:5px 0}.sub{color:var(--muted);line-height:1.5;margin:0}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tabs a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 17px;border-radius:999px;background:#151516;color:#eee;text-decoration:none;font-size:14px;cursor:pointer;transition:all .2s ease}.tabs a.active,.tabs a:focus{background:var(--soft);color:#78a2ff}.section{scroll-margin-top:12px;opacity:1;transform:translateY(0);transition:opacity .25s ease,transform .25s ease}[data-panel]{opacity:0;transform:translateY(10px);transition:opacity .25s ease,transform .25s ease}[data-panel].active-panel{opacity:1;transform:translateY(0)}.item{display:flex;justify-content:space-between;gap:18px;padding:14px 0;border-bottom:1px solid #292929}.item:last-child{border-bottom:0}.label{color:var(--muted);font-size:14px}.value{text-align:right;max-width:66%;font-size:14px}details{border:1px solid var(--line);background:#151516;border-radius:15px;margin-top:10px;overflow:hidden}summary{cursor:pointer;list-style:none;padding:15px;font-size:15px;display:flex;justify-content:space-between;align-items:center}summary::-webkit-details-marker{display:none}summary::after{content:"⋮";color:#888;font-size:20px}details[open] summary::after{transform:rotate(90deg)}.detail{padding:0 15px 15px;color:#c8c8cc;font-size:14px;line-height:1.55}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.chip{border:1px solid var(--line);background:#151516;border-radius:999px;padding:8px 12px;font-size:13px;color:#ddd}.qp-group{margin-bottom:16px;display:flex;flex-direction:column;gap:10px}.qp-title{font-size:12px;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase}.qp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.qp-item{background:rgba(15,23,42,.95);border:1px solid rgba(31,41,55,.9);padding:8px 10px;border-radius:var(--radius-md);font-size:12px;color:var(--text-main);text-align:center;transition:all .25s ease;cursor:pointer}.qp-item:hover,.qp-item:active{background:rgba(79,124,255,.18);border-color:rgba(79,124,255,.6);transform:translateY(-2px)}.qp-active{background:rgba(79,124,255,.25)!important;border-color:rgba(79,124,255,.7)!important;transform:scale(1.05)}@media(max-width:480px){body{padding:10px}.item{flex-direction:column;gap:6px}.value{text-align:left;max-width:100%}}
+</style></head><body><main><div class="card"><div class="eyebrow">Personal Profile</div><h1>Aiden</h1><p class="sub">A little about me — without getting way too personal.</p></div><nav class="tabs" aria-label="Profile sections"><a href="#me">Me</a><a href="#likes">Stuff I Like</a><a href="#quick">Quick Picks</a><a href="#vibe">My Vibe</a></nav><section id="me" class="card section"><div class="eyebrow">What I'm Like</div><div class="item"><div class="label">Communication</div><div class="value">Pretty direct. I'd rather just say what I mean.</div></div><div class="item"><div class="label">Personality</div><div class="value">Calm, observant, and kinda private.</div></div><div class="item"><div class="label">Conversation</div><div class="value">Real conversations &gt; forced small talk.</div></div><div class="item"><div class="label">My vibe</div><div class="value">Low-key, clean, simple, and not trying too hard.</div></div><div class="item"><div class="label">What matters</div><div class="value">Respect, honesty, consistency, and being yourself.</div></div></section><section id="likes" class="card section"><div class="eyebrow">Stuff I Actually Like</div><details><summary>Gaming</summary><div class="detail">Mostly FC 26 and eFootball. I like games where you actually have to think instead of doing the same thing over and over.</div></details><details><summary>Anime</summary><div class="detail">Bleach is one of my favorites. I'm into anime with good characters, storylines, and moments that actually hit.</div></details><details><summary>Music</summary><div class="detail">Mostly R&amp;B and chill stuff. Drake, Brent Faiyaz, Bryson Tiller, Giveon, Khalid, and similar vibes.</div></details><details><summary>Style &amp; aesthetics</summary><div class="detail">Darker, clean, minimal stuff. Nothing too loud or overdone.</div></details></section><section class="card" data-panel="quick" hidden>
+  <div class="card-header">
+    <div class="card-title">Quick Picks</div>
+    <div class="pill">Favorites • Go‑tos</div>
+  </div>
+
+  <div class="card-body">
+
+    <div class="qp-group">
+      <h3 class="qp-title">Music</h3>
+      <div class="qp-grid">
+        <div class="qp-item">Drake</div>
+        <div class="qp-item">Brent Faiyaz</div>
+        <div class="qp-item">Bryson Tiller</div>
+        <div class="qp-item">Giveon</div>
+        <div class="qp-item">Khalid</div>
+      </div>
+    </div>
+
+    <div class="qp-group">
+      <h3 class="qp-title">Aesthetic</h3>
+      <div class="qp-grid">
+        <div class="qp-item">Dark Mode</div>
+        <div class="qp-item">Minimal</div>
+        <div class="qp-item">Clean Layouts</div>
+        <div class="qp-item">Low‑Noise UI</div>
+      </div>
+    </div>
+
+    <div class="qp-group">
+      <h3 class="qp-title">Games</h3>
+      <div class="qp-grid">
+        <div class="qp-item">FC 26</div>
+        <div class="qp-item">eFootball</div>
+        <div class="qp-item">Soccer Mobile</div>
+      </div>
+    </div>
+
+  </div>
+</section><section id="vibe" class="card section"><div class="eyebrow">My Vibe</div><div class="item"><div class="label">Privacy</div><div class="value">I'm cool with sharing interests and personality. The really personal stuff stays personal.</div></div><div class="item"><div class="label">Trust</div><div class="value">I'd rather build trust naturally than tell someone everything right away.</div></div><div class="item"><div class="label">Drama</div><div class="value">Not really my thing. If something's wrong, just talk about it.</div></div><div class="item"><div class="label">Energy</div><div class="value">Good conversations &gt; trying to impress each other.</div></div></section></main><div id="installPrompt" style="
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15,23,42,0.95);
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(79,124,255,0.4);
+  color: #f5f7ff;
+  font-size: 13px;
+  display: none;
+">
+  Add this to your Home Screen for a better experience.
+</div><script>
+function activateTab(key) {
+  document.querySelectorAll(".tabs a").forEach(tab => {
+    tab.classList.toggle("active", tab.getAttribute("href") === "#" + key);
+  });
+
+  document.querySelectorAll("[data-panel]").forEach(panel => {
+    const isActive = panel.dataset.panel === key;
+    panel.hidden = !isActive;
+    panel.classList.toggle("active-panel", isActive);
+  });
+}
+
+document.querySelectorAll(".tabs a").forEach(tab => {
+  tab.addEventListener("click", (e) => {
+    const href = tab.getAttribute("href");
+    if (href.startsWith("#")) {
+      activateTab(href.slice(1));
+    }
+  });
+});
+
+document.querySelectorAll(".qp-item").forEach(item => {
+  item.addEventListener("click", () => {
+    item.classList.add("qp-active");
+    setTimeout(() => item.classList.remove("qp-active"), 300);
+  });
+});
+
+const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+if (isIOS && isSafari && !window.matchMedia('(display-mode: standalone)').matches) {
+  const prompt = document.getElementById("installPrompt");
+  prompt.style.display = "block";
+  setTimeout(() => prompt.style.display = "none", 6000);
+}
+</script></body></html>
