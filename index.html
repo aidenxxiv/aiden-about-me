@@ -3,420 +3,805 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0b0b0c">
+  <meta name="theme-color" content="#070708">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon.svg">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <title>Aiden – About Me</title>
   <style>
     :root {
-      --bg: #0b0b0c;
-      --card: #181819;
-      --line: #303033;
-      --text: #f3f3f3;
-      --muted: #a7a7ab;
-      --soft: #19294e;
-      --text-main: #f3f3f3;
-      --text-muted: #a7a7ab;
-      --radius-md: 8px;
+      --bg: #070708;
+      --bg-elev: rgba(255,255,255,0.02);
+      --card: #0f0f10;
+      --card-2: #141416;
+      --glass-border: rgba(255,255,255,0.04);
+      --line: rgba(255,255,255,0.06);
+      --accent: #4f7cff;
+      --accent-ink: #78a2ff;
+      --text: #eef1f6;
+      --muted: #9aa0a6;
+      --shadow: rgba(0,0,0,0.6);
+      --space-xxs: 4px;
+      --space-xs: 8px;
+      --space-sm: 12px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --dur-fast: 160ms;
+      --dur-med: 260ms;
+      --curve: cubic-bezier(.2,.9,.26,1);
+      font-synthesis: none;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 12px; }
+    html, body { height: 100%; }
     body {
       margin: 0;
-      background: var(--bg);
+      background: linear-gradient(180deg, var(--bg) 0%, #050506 60%);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      padding: 14px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.45;
+      overflow-x: hidden;
     }
-    main { max-width: 720px; margin: auto; }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 20px;
-      margin-bottom: 12px;
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
     }
-    .card-header {
+
+    header.site-header {
+      position: sticky;
+      top: 12px;
+      z-index: 60;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
-      gap: 12px;
+      justify-content: space-between;
+      padding: 8px 20px;
+      background: transparent;
     }
-    .card-title { font-size: 18px; font-weight: 600; }
-    .pill {
-      font-size: 12px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      background: rgba(79, 124, 255, .1);
-      padding: 4px 10px;
-      border-radius: 12px;
-    }
-    .card-body { display: flex; flex-direction: column; gap: 12px; }
-    .eyebrow {
-      font-size: 12px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    h1 { font-size: 32px; margin: 5px 0; }
-    .sub {
-      color: var(--muted);
-      line-height: 1.5;
-      margin: 0;
-    }
-    .tabs {
+
+    .nav {
       display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin: 12px 0;
+      gap: 10px;
+      align-items: center;
+      overflow: auto;
+      padding: 6px 6px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
-    .tabs .tab {
-      display: inline-flex;
+    .nav::-webkit-scrollbar { display: none; }
+
+    .nav button {
+      background: transparent;
+      border: 0;
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all var(--dur-fast) var(--curve);
+    }
+    .nav button.active {
+      color: var(--accent-ink);
+      background: rgba(79,124,255,0.04);
+      border: 1px solid rgba(79,124,255,0.06);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;
-      padding: 0 17px;
-      border-radius: 999px;
-      background: #151516;
-      color: #eee;
-      text-decoration: none;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all .2s ease;
-      border: none;
+      padding: 60px 20px 40px;
+      position: relative;
     }
-    .tabs .tab.active {
-      background: var(--soft);
-      color: #78a2ff;
+    .hero-inner {
+      max-width: 900px;
+      text-align: center;
     }
-
-    [data-panel] {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
+    .brand {
+      font-size: clamp(48px, 10vw, 96px);
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      margin: 0;
     }
-    [data-panel].active-panel {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .item {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 14px 0;
-      border-bottom: 1px solid #292929;
-    }
-    .item:last-child { border-bottom: 0; }
-    .label { color: var(--muted); font-size: 14px; }
-    .value {
-      text-align: right;
-      max-width: 66%;
-      font-size: 14px;
-    }
-
-    details {
-      border: 1px solid var(--line);
-      background: #151516;
-      border-radius: 15px;
-      margin-top: 10px;
-      overflow: hidden;
-    }
-    summary {
-      cursor: pointer;
-      list-style: none;
-      padding: 15px;
+    .tagline {
+      color: var(--muted);
+      margin-top: 8px;
       font-size: 15px;
+    }
+    .hero-tags {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .hero-tags .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .hero-cta { margin-top: 26px; }
+    .btn {
+      appearance: none;
+      border: 0;
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(79,124,255,0.14), rgba(79,124,255,0.08));
+      color: var(--accent-ink);
+      font-weight: 700;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      transition: transform var(--dur-fast) var(--curve), opacity var(--dur-fast) var(--curve);
+    }
+    .btn:active { transform: translateY(1px) scale(0.997); }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(800px 400px at 10% 20%, rgba(79,124,255,0.03), transparent 6%), radial-gradient(500px 300px at 90% 80%, rgba(120,162,255,0.02), transparent 6%);
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 1;
+      transition: opacity .6s;
+    }
+
+    section.card-section {
+      margin-top: 28px;
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .section-title {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin: 0 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.02);
     }
-    summary::-webkit-details-marker { display: none; }
-    summary::after { content: "⋮"; color: #888; font-size: 20px; }
-    details[open] summary::after { transform: rotate(90deg); }
-    .detail {
-      padding: 0 15px 15px;
-      color: #c8c8cc;
-      font-size: 14px;
-      line-height: 1.55;
-    }
+    .section-title h2 { margin: 0; font-size: 18px; }
+    .section-sub { color: var(--muted); font-size: 13px; }
 
-    .qp-group {
-      margin-bottom: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .qp-title {
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-    .qp-grid {
+    .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      gap: 14px;
+      margin-top: 14px;
     }
-    .qp-item {
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      padding: 8px 10px;
-      border-radius: var(--radius-md);
-      font-size: 12px;
-      color: var(--text-main);
-      text-align: center;
-      transition: all 0.25s ease;
-      cursor: pointer;
+    .about-card {
+      background: var(--card-2);
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      transition: transform var(--dur-fast) var(--curve), box-shadow var(--dur-fast) var(--curve);
+      cursor: default;
     }
-    .qp-item:hover,
-    .qp-item:active {
-      background: rgba(79, 124, 255, 0.18);
-      border-color: rgba(79, 124, 255, 0.6);
-      transform: translateY(-2px);
+    .about-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.6);
     }
-    .qp-active {
-      background: rgba(79, 124, 255, 0.25) !important;
-      border-color: rgba(79, 124, 255, 0.7) !important;
-      transform: scale(1.05);
-    }
+    .about-card h3 { margin: 0 0 8px; font-size: 14px; }
+    .about-card p { margin: 0; color: var(--muted); font-size: 13px; }
 
-    .likes-group {
-      margin-bottom: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .likes-title {
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
     .likes-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .like-card {
+      background: var(--card);
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      cursor: pointer;
+      transition: transform var(--dur-fast) var(--curve), box-shadow var(--dur-fast) var(--curve);
+      text-align: left;
+      color: var(--text);
+    }
+    .like-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.45);
+    }
+    .like-card.active { outline: 3px solid rgba(79,124,255,0.06); }
+    .like-card h4 { margin: 0 0 6px; font-size: 14px; }
+    .like-card p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
+    .artist {
+      background: var(--card);
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      transition: transform var(--dur-fast) var(--curve), box-shadow var(--dur-fast) var(--curve);
+      cursor: pointer;
+    }
+    .artist:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.5);
+    }
+    .artist h5 { margin: 0 0 6px; font-size: 14px; }
+    .artist p { margin: 0; color: var(--muted); font-size: 13px; }
+    .moods {
+      display: flex;
       gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
     }
-    .likes-item,
-    .tag {
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(31, 41, 55, 0.9);
+    .mood-btn {
       padding: 8px 10px;
-      border-radius: var(--radius-md);
-      font-size: 12px;
-      color: var(--text-main);
-      text-align: center;
-      transition: all 0.25s ease;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.02);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all var(--dur-fast) var(--curve);
     }
-    .likes-item:hover,
-    .tag:hover {
-      background: rgba(79, 124, 255, 0.18);
-      border-color: rgba(79, 124, 255, 0.6);
-      transform: translateY(-2px);
+    .mood-btn.active {
+      background: rgba(79,124,255,0.06);
+      color: var(--accent-ink);
+      border-color: rgba(79,124,255,0.08);
+    }
+    .mood-desc {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    @media (max-width: 480px) {
-      body { padding: 10px; }
-      .item { flex-direction: column; gap: 6px; }
-      .value { text-align: left; max-width: 100%; }
-      .qp-grid { grid-template-columns: repeat(2, 1fr); }
+    .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .anime-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      cursor: pointer;
+      transition: transform var(--dur-fast) var(--curve), box-shadow var(--dur-fast) var(--curve);
+      color: var(--text);
+      text-align: left;
+    }
+    .anime-thumb {
+      width: 72px;
+      height: 72px;
+      border-radius: 10px;
+      background: linear-gradient(180deg,#0b0b0c,#111);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 12px;
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+    .anime-info h4 { margin: 0 0 6px; font-size: 15px; }
+    .anime-info p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .football-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .football-card {
+      background: var(--card);
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      transition: transform var(--dur-fast) var(--curve);
+      cursor: pointer;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .game-card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform var(--dur-fast) var(--curve), box-shadow var(--dur-fast) var(--curve);
+      color: var(--text);
+    }
+    .game-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.45);
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .quick-item {
+      background: var(--card-2);
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+    }
+
+    .vibe-card {
+      padding: 18px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+      border: 1px solid var(--line);
+    }
+
+    .fact-area {
+      margin-top: 12px;
+      color: var(--muted);
+      min-height: 34px;
+    }
+    .controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .quick-grid { grid-template-columns: repeat(2, 1fr); }
       .likes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      main { padding: 0 14px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .nav { gap: 6px; }
+      .hero-inner { padding: 0 8px; }
+      .brand { font-size: 48px; }
+      .games-grid { grid-template-columns: 1fr; }
+      .likes-grid { grid-template-columns: 1fr; }
+      .quick-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 360px) {
+      .brand { font-size: 40px; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity var(--dur-med) var(--curve), transform var(--dur-med) var(--curve);
+    }
+    .reveal.show { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+      .reveal { transition: none; }
     }
   </style>
 </head>
 <body>
-  <main>
-    <div class="card">
-      <div class="eyebrow">Personal Profile</div>
-      <h1>Aiden</h1>
-      <p class="sub">A little about me — without getting way too personal.</p>
-    </div>
-
-    <nav class="tabs" aria-label="Profile sections">
-      <button class="tab active" type="button" data-tab="me">Me</button>
-      <button class="tab" type="button" data-tab="likes">Stuff I Like</button>
-      <button class="tab" type="button" data-tab="quick">Quick Picks</button>
-      <button class="tab" type="button" data-tab="vibe">My Vibe</button>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation" id="primaryNav">
+      <button type="button" data-target="me">Me</button>
+      <button type="button" data-target="likes">Likes</button>
+      <button type="button" data-target="music">Music</button>
+      <button type="button" data-target="anime">Anime</button>
+      <button type="button" data-target="football">Football</button>
+      <button type="button" data-target="games">Games</button>
+      <button type="button" data-target="quick">Quick Picks</button>
+      <button type="button" data-target="vibe">Vibe</button>
     </nav>
+  </header>
 
-    <section class="card" data-panel="me" class="active-panel">
-      <div class="eyebrow">What I'm Like</div>
-      <div class="item"><div class="label">Communication</div><div class="value">Pretty direct. I'd rather just say what I mean.</div></div>
-      <div class="item"><div class="label">Personality</div><div class="value">Calm, observant, and kinda private.</div></div>
-      <div class="item"><div class="label">Conversation</div><div class="value">Real conversations &gt; forced small talk.</div></div>
-      <div class="item"><div class="label">My vibe</div><div class="value">Low-key, clean, simple, and not trying too hard.</div></div>
-      <div class="item"><div class="label">What matters</div><div class="value">Respect, honesty, consistency, and being yourself.</div></div>
-    </section>
+  <main>
+    <section id="hero" class="hero" aria-label="Intro">
+      <div class="hero-inner">
+        <h1 class="brand">AIDEN</h1>
+        <div class="tagline">quiet energy. good taste. no unnecessary noise.</div>
 
-    <section class="card" data-panel="likes" hidden>
-      <div class="card-header">
-        <div class="card-title">Stuff I’m Into</div>
-        <div class="pill">Music • Anime • Football • Style • Vibe</div>
-      </div>
-
-      <div class="card-body">
-
-        <div class="likes-group">
-          <h3 class="likes-title">Music &amp; Artists</h3>
-          <div class="likes-grid">
-            <div class="likes-item">Drake</div>
-            <div class="likes-item">Brent Faiyaz</div>
-            <div class="likes-item">Bryson Tiller</div>
-            <div class="likes-item">Giveon</div>
-            <div class="likes-item">Odeal</div>
-          </div>
+        <div class="hero-tags" aria-label="Topics">
+          <div class="pill">Music</div>
+          <div class="pill">Anime</div>
+          <div class="pill">Football</div>
+          <div class="pill">Games</div>
+          <div class="pill">Style</div>
         </div>
 
-        <div class="likes-group">
-          <h3 class="likes-title">Anime</h3>
-          <div class="likes-grid">
-            <div class="likes-item">Bleach</div>
-            <div class="likes-item">Tensura</div>
-            <div class="likes-item">Seven Deadly Sins</div>
-          </div>
-        </div>
-
-        <div class="likes-group">
-          <h3 class="likes-title">Football</h3>
-          <div class="likes-grid">
-            <div class="likes-item">FC Barcelona</div>
-            <div class="likes-item">Lamine Yamal</div>
-            <div class="likes-item">FC 26</div>
-            <div class="likes-item">eFootball</div>
-          </div>
-        </div>
-
-        <div class="likes-group">
-          <h3 class="likes-title">Style &amp; Aesthetic</h3>
-          <div class="likes-grid">
-            <div class="likes-item">Dark mode</div>
-            <div class="likes-item">Minimal layouts</div>
-            <div class="likes-item">Matte black</div>
-            <div class="likes-item">Clean fits</div>
-            <div class="likes-item">Low-noise UI</div>
-          </div>
-        </div>
-
-        <div class="likes-group">
-          <h3 class="likes-title">Vibe &amp; Energy</h3>
-          <div class="likes-grid">
-            <div class="likes-item">Calm</div>
-            <div class="likes-item">Focused</div>
-            <div class="likes-item">Low-key</div>
-            <div class="likes-item">Quiet confidence</div>
-            <div class="likes-item">Late-night playlists</div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="card" data-panel="quick" hidden>
-      <div class="card-header">
-        <div class="card-title">Quick Picks</div>
-        <div class="pill">Favorites • Go‑tos</div>
-      </div>
-
-      <div class="card-body">
-        <div class="qp-group">
-          <h3 class="qp-title">Music</h3>
-          <div class="qp-grid">
-            <div class="qp-item">Drake</div>
-            <div class="qp-item">Brent Faiyaz</div>
-            <div class="qp-item">Bryson Tiller</div>
-            <div class="qp-item">Giveon</div>
-            <div class="qp-item">Khalid</div>
-          </div>
-        </div>
-
-        <div class="qp-group">
-          <h3 class="qp-title">Aesthetic</h3>
-          <div class="qp-grid">
-            <div class="qp-item">Dark Mode</div>
-            <div class="qp-item">Minimal</div>
-            <div class="qp-item">Clean Layouts</div>
-            <div class="qp-item">Low‑Noise UI</div>
-          </div>
-        </div>
-
-        <div class="qp-group">
-          <h3 class="qp-title">Games</h3>
-          <div class="qp-grid">
-            <div class="qp-item">FC 26</div>
-            <div class="qp-item">eFootball</div>
-            <div class="qp-item">Soccer Mobile</div>
-          </div>
+        <div class="hero-cta">
+          <button class="btn" id="exploreBtn" type="button" aria-controls="me">Explore</button>
         </div>
       </div>
     </section>
 
-    <section class="card" data-panel="vibe" hidden>
-      <div class="eyebrow">My Vibe</div>
-      <div class="item"><div class="label">Privacy</div><div class="value">I'm cool with sharing interests and personality. The really personal stuff stays personal.</div></div>
-      <div class="item"><div class="label">Trust</div><div class="value">I'd rather build trust naturally than tell someone everything right away.</div></div>
-      <div class="item"><div class="label">Drama</div><div class="value">Not really my thing. If something's wrong, just talk about it.</div></div>
-      <div class="item"><div class="label">Energy</div><div class="value">Good conversations &gt; trying to impress each other.</div></div>
+    <section id="me" class="card-section reveal" tabindex="-1">
+      <div class="section-title">
+        <h2>What I'm Like</h2>
+        <div class="section-sub">A few short notes about personality &amp; approach</div>
+      </div>
+      <div class="cards-grid">
+        <article class="about-card" aria-labelledby="c-communication">
+          <h3 id="c-communication">Communication</h3>
+          <p>Pretty direct. I'd rather just say what I mean.</p>
+        </article>
+        <article class="about-card" aria-labelledby="c-personality">
+          <h3 id="c-personality">Personality</h3>
+          <p>Calm, observant, and kinda private.</p>
+        </article>
+        <article class="about-card" aria-labelledby="c-conversation">
+          <h3 id="c-conversation">Conversation</h3>
+          <p>Real conversations &gt; forced small talk.</p>
+        </article>
+        <article class="about-card" aria-labelledby="c-vibe">
+          <h3 id="c-vibe">My vibe</h3>
+          <p>Low-key, clean, simple, and not trying too hard.</p>
+        </article>
+        <article class="about-card" aria-labelledby="c-matters">
+          <h3 id="c-matters">What matters</h3>
+          <p>Respect, honesty, consistency, and being yourself.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="likes" class="card-section reveal" tabindex="-1">
+      <div class="section-title">
+        <h2>Stuff I’m Into</h2>
+        <div class="section-sub">Click a card to focus that area</div>
+      </div>
+      <div class="likes-grid" id="likesGrid">
+        <button type="button" class="like-card" data-focus="music">
+          <h4>Music</h4>
+          <p>Artists, late-night playlists, and low-noise vibes.</p>
+        </button>
+        <button type="button" class="like-card" data-focus="anime">
+          <h4>Anime</h4>
+          <p>Bleach, Tensura, Seven Deadly Sins — visual &amp; narrative energy.</p>
+        </button>
+        <button type="button" class="like-card" data-focus="football">
+          <h4>Football</h4>
+          <p>FC Barcelona, Lamine Yamal, and soccer game culture.</p>
+        </button>
+        <button type="button" class="like-card" data-focus="games">
+          <h4>Games</h4>
+          <p>FC 26, eFootball — casual, polished, fun.</p>
+        </button>
+        <button type="button" class="like-card" data-focus="style">
+          <h4>Style</h4>
+          <p>Dark mode, minimal layouts, matte black, clean fits.</p>
+        </button>
+        <button type="button" class="like-card" data-focus="vibe">
+          <h4>Vibe</h4>
+          <p>Calm, focused, low-key, late-night playlists.</p>
+        </button>
+      </div>
+    </section>
+
+    <section id="music" class="card-section reveal" tabindex="-1">
+      <div class="section-title">
+        <h2>Music &amp; Artists</h2>
+        <div class="section-sub">Late-night, chill, focused — pick a mood</div>
+      </div>
+      <div class="moods" role="tablist" aria-label="Music moods">
+        <button type="button" class="mood-btn" data-mood="late">Late Night</button>
+        <button type="button" class="mood-btn" data-mood="chill">Chill</button>
+        <button type="button" class="mood-btn" data-mood="focused">Focused</button>
+        <button type="button" class="mood-btn" data-mood="after">After School</button>
+      </div>
+      <div class="mood-desc" id="moodDesc">Pick a mood to see a short description.</div>
+
+      <div class="artists-grid" style="margin-top:12px" id="artistsGrid">
+        <div class="artist" data-artist="Drake">
+          <h5>Drake</h5>
+          <p>Late-night, melodic, smooth R&amp;B-infused hip-hop.</p>
+        </div>
+        <div class="artist" data-artist="Brent Faiyaz">
+          <h5>Brent Faiyaz</h5>
+          <p>Breathy, intimate R&amp;B with a refined tone.</p>
+        </div>
+        <div class="artist" data-artist="Bryson Tiller">
+          <h5>Bryson Tiller</h5>
+          <p>Trap soul touchpoints and subdued grooves.</p>
+        </div>
+        <div class="artist" data-artist="Giveon">
+          <h5>Giveon</h5>
+          <p>Deep baritone, mellow and evocative.</p>
+        </div>
+        <div class="artist" data-artist="Odeal">
+          <h5>Odeal</h5>
+          <p>Rising vibes, smooth and melodic.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="anime" class="card-section reveal" tabindex="-1">
+      <div class="section-title">
+        <h2>Anime</h2>
+        <div class="section-sub">Favorite series presented as visual cards</div>
+      </div>
+      <div class="anime-grid" id="animeGrid">
+        <button type="button" class="anime-card" data-anime="Bleach">
+          <div class="anime-thumb">Bleach</div>
+          <div class="anime-info">
+            <h4>Bleach</h4>
+            <p>Classic action with strong visual style.</p>
+          </div>
+        </button>
+        <button type="button" class="anime-card" data-anime="Tensura">
+          <div class="anime-thumb">Tensura</div>
+          <div class="anime-info">
+            <h4>Tensura</h4>
+            <p>Distinctive fantasy and gentle humor.</p>
+          </div>
+        </button>
+        <button type="button" class="anime-card" data-anime="Seven Deadly Sins">
+          <div class="anime-thumb">SDS</div>
+          <div class="anime-info">
+            <h4>Seven Deadly Sins</h4>
+            <p>Adventure-driven, bold characters.</p>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <section id="football" class="card-section reveal" tabindex="-1">
+      <div class="section-title">
+        <h2>Football</h2>
+        <div class="section-sub">Minimal, tasteful football notes</div>
+      </div>
+      <div class="football-grid">
+        <div class="football-card">
+          <h4>FC Barcelona</h4>
+          <p style="margin-top:6px;color:var(--muted)">Admire the style of play and craft of young talents.</p>
+        </div>
+        <div class="football-card">
+          <h4>Lamine Yamal</h4>
+          <p style="margin-top:6px;color:var(--muted)">A young player with electric movement and composure.</p>
+        </div>
+        <div class="football-card">
+          <h4>FC 26 &amp; eFootball</h4>
+          <p style="margin-top:6px;color:var(--muted)">Casual game time; polished simulations.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="games" class="card-section reveal" tabindex="-1">
+      <div class="section-title">
+        <h2>Games</h2>
+        <div class="section-sub">Two go-to titles</div>
+      </div>
+      <div class="games-grid">
+        <button type="button" class="game-card" data-game="FC 26">FC 26</button>
+        <button type="button" class="game-card" data-game="eFootball">eFootball</button>
+      </div>
+    </section>
+
+    <section id="quick" class="card-section reveal" tabindex="-1">
+      <div class="section-title">
+        <h2>Quick Picks</h2>
+        <div class="section-sub">Short answers for quick reading</div>
+      </div>
+      <div class="quick-grid">
+        <div class="quick-item"><strong>Music</strong><div style="color:var(--muted);margin-top:6px">Late-night R&amp;B &amp; mellow hip-hop.</div></div>
+        <div class="quick-item"><strong>Game</strong><div style="color:var(--muted);margin-top:6px">FC 26 — casual, polished.</div></div>
+        <div class="quick-item"><strong>Anime</strong><div style="color:var(--muted);margin-top:6px">Character-driven, stylish action.</div></div>
+        <div class="quick-item"><strong>Aesthetic</strong><div style="color:var(--muted);margin-top:6px">Matte black, minimal, clean fits.</div></div>
+        <div class="quick-item"><strong>Conversation</strong><div style="color:var(--muted);margin-top:6px">Real talk &gt; small talk.</div></div>
+        <div class="quick-item"><strong>Energy</strong><div style="color:var(--muted);margin-top:6px">Calm, focused, late-night playlists.</div></div>
+      </div>
+    </section>
+
+    <section id="vibe" class="card-section reveal" tabindex="-1">
+      <div class="section-title">
+        <h2>My Vibe</h2>
+        <div class="section-sub">Overall personality in a few lines</div>
+      </div>
+      <div class="vibe-card">
+        <p style="margin:0;color:var(--muted)">Quiet confidence, careful with words, prefers depth over noise. Honest, consistent, and low-key — the kind of person who values respect and calm spaces.</p>
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button class="btn" id="randomFactBtn" type="button">✦ Random Aiden Fact</button>
+          <div class="fact-area" id="factArea" aria-live="polite"></div>
+        </div>
+
+        <div style="margin-top:14px">
+          <div style="font-weight:700;margin-bottom:8px">Pick a vibe</div>
+          <div class="controls">
+            <button type="button" class="mood-btn" data-pick="late">Late Night</button>
+            <button type="button" class="mood-btn" data-pick="after">After School</button>
+            <button type="button" class="mood-btn" data-pick="game">Game Time</button>
+            <button type="button" class="mood-btn" data-pick="locked">Locked In</button>
+          </div>
+          <div class="mood-desc" id="pickDesc">Select a vibe to see a short line.</div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <div id="installPrompt" style="
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(15,23,42,0.95);
-    padding: 12px 16px;
-    border-radius: 14px;
-    border: 1px solid rgba(79,124,255,0.4);
-    color: #f5f7ff;
-    font-size: 13px;
-    display: none;
-  ">
-    Add this to your Home Screen for a better experience.
-  </div>
-
   <script>
-    const tabs = document.querySelectorAll('.tab');
-    const panels = document.querySelectorAll('[data-panel]');
+    const qs = (selector) => document.querySelector(selector);
+    const qsa = (selector) => Array.from(document.querySelectorAll(selector));
 
-    function activateTab(key) {
-      tabs.forEach(tab => {
-        tab.classList.toggle("active", tab.dataset.tab === key);
-      });
+    function scrollToId(id, push = true) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (push) {
+        history.pushState({ section: id }, '', '#' + id);
+      }
+    }
 
-      panels.forEach(panel => {
-        const isActive = panel.dataset.panel === key;
-        panel.hidden = !isActive;
-        panel.classList.toggle("active-panel", isActive);
+    function setActiveNav(id) {
+      qsa('#primaryNav button').forEach((button) => {
+        button.classList.toggle('active', button.dataset.target === id);
       });
     }
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => activateTab(tab.dataset.tab));
+    const nav = qs('#primaryNav');
+    if (nav) {
+      nav.addEventListener('click', (event) => {
+        const button = event.target.closest('button[data-target]');
+        if (!button) return;
+        const target = button.dataset.target;
+        setActiveNav(target);
+        scrollToId(target, true);
+      });
+    }
+
+    window.addEventListener('load', () => {
+      const startId = location.hash ? location.hash.replace('#', '') : 'me';
+      setActiveNav(startId);
+      setTimeout(() => {
+        const target = document.getElementById(startId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 80);
     });
 
-    document.querySelectorAll('.qp-item').forEach(item => {
-      item.addEventListener('click', () => {
-        item.classList.add('qp-active');
-        setTimeout(() => item.classList.remove('qp-active'), 300);
+    window.addEventListener('popstate', () => {
+      const id = location.hash ? location.hash.replace('#', '') : 'me';
+      setActiveNav(id);
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    const exploreBtn = qs('#exploreBtn');
+    if (exploreBtn) {
+      exploreBtn.addEventListener('click', () => scrollToId('me', true));
+    }
+
+    qsa('.like-card').forEach((button) => {
+      button.addEventListener('click', () => {
+        const focus = button.dataset.focus;
+        if (!focus) return;
+        setActiveNav(focus);
+        scrollToId(focus, true);
+        button.classList.add('active');
+        setTimeout(() => button.classList.remove('active'), 900);
       });
     });
 
-    const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    qsa('.game-card').forEach((gameCard) => {
+      gameCard.addEventListener('click', () => {
+        qsa('.game-card').forEach((card) => {
+          card.style.transform = card === gameCard ? 'translateY(-6px) scale(1.01)' : '';
+        });
+        setTimeout(() => {
+          gameCard.style.transform = 'translateY(-6px)';
+        }, 180);
+      });
+    });
 
-    if (isIOS && isSafari && !window.matchMedia('(display-mode: standalone)').matches) {
-      const prompt = document.getElementById('installPrompt');
-      prompt.style.display = 'block';
-      setTimeout(() => prompt.style.display = 'none', 6000);
+    const moodMap = {
+      late: 'Late-night playlists and chilled beats.',
+      chill: 'Relaxed, smooth tracks to unwind.',
+      focused: 'Low-noise, clear-headed music for focus.',
+      after: 'Upbeat, easygoing tracks for downtime.'
+    };
+
+    const moodButtons = qsa('.mood-btn[data-mood]');
+    const moodDesc = qs('#moodDesc');
+    moodButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        moodButtons.forEach((item) => item.classList.toggle('active', item === button));
+        const mood = button.dataset.mood;
+        moodDesc.textContent = moodMap[mood] || '';
+      });
+    });
+
+    const pickMap = {
+      late: 'Slow, intentional, late-night energy.',
+      after: 'Easygoing and relaxed — after-school calm.',
+      game: 'Playful focus, a little competitive.',
+      locked: 'Highly focused and productive.'
+    };
+
+    const pickButtons = qsa('.mood-btn[data-pick]');
+    const pickDesc = qs('#pickDesc');
+    pickButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        pickButtons.forEach((item) => item.classList.toggle('active', item === button));
+        const key = button.dataset.pick;
+        pickDesc.textContent = pickMap[key] || '';
+      });
+    });
+
+    const facts = [
+      'Prefers quiet, late-night playlists.',
+      'Enjoys clean, minimal design and matte-black aesthetics.',
+      'Values respect, honesty, and consistency.',
+      'Likes FC Barcelona and Lamine Yamal.',
+      'Favors artists like Drake, Brent Faiyaz, and Giveon.'
+    ];
+
+    const factBtn = qs('#randomFactBtn');
+    const factArea = qs('#factArea');
+    let lastFactIndex = -1;
+
+    if (factBtn) {
+      factBtn.addEventListener('click', () => {
+        let nextIndex = lastFactIndex;
+        if (facts.length > 1) {
+          while (nextIndex === lastFactIndex) {
+            nextIndex = Math.floor(Math.random() * facts.length);
+          }
+        }
+        lastFactIndex = nextIndex;
+        factArea.textContent = facts[nextIndex];
+      });
     }
 
-    activateTab('me');
+    qsa('.anime-card, .artist').forEach((element) => {
+      element.addEventListener('click', () => {
+        element.classList.toggle('selected');
+        if (element.classList.contains('selected')) {
+          element.style.transform = 'translateY(-6px) scale(1.02)';
+        } else {
+          element.style.transform = '';
+        }
+        setTimeout(() => {
+          if (element.classList.contains('selected')) {
+            element.style.transform = 'translateY(-6px)';
+          }
+        }, 200);
+      });
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.08 });
+
+    qsa('.reveal').forEach((section) => revealObserver.observe(section));
+
+    window.addEventListener('resize', () => {
+      document.documentElement.style.overflowX = 'hidden';
+    });
   </script>
 </body>
 </html>
