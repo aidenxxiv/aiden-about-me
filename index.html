@@ -186,7 +186,7 @@
     }
 
     .likes-group {
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -198,8 +198,8 @@
       text-transform: uppercase;
     }
     .likes-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
     }
     .likes-item,
@@ -244,72 +244,83 @@
       <button class="tab" type="button" data-tab="vibe">My Vibe</button>
     </nav>
 
-    <section class="card" data-panel="me" class="active-panel">
-      <div class="eyebrow">What I'm Like</div>
-      <div class="item"><div class="label">Communication</div><div class="value">Pretty direct. I'd rather just say what I mean.</div></div>
-      <div class="item"><div class="label">Personality</div><div class="value">Calm, observant, and kinda private.</div></div>
-      <div class="item"><div class="label">Conversation</div><div class="value">Real conversations &gt; forced small talk.</div></div>
-      <div class="item"><div class="label">My vibe</div><div class="value">Low-key, clean, simple, and not trying too hard.</div></div>
-      <div class="item"><div class="label">What matters</div><div class="value">Respect, honesty, consistency, and being yourself.</div></div>
+    <section class="card" data-panel="me" hidden>
+      <div class="card-header">
+        <div class="card-title">Me</div>
+        <div class="pill">A quick snapshot</div>
+      </div>
+
+      <div class="card-body">
+        <p>I’m Aiden — I like clean design, calm energy, good music, and anything that keeps life simple and focused.</p>
+      </div>
     </section>
 
     <section class="card" data-panel="likes" hidden>
       <div class="card-header">
         <div class="card-title">Stuff I’m Into</div>
-        <div class="pill">Music • Anime • Football • Style • Vibe</div>
+        <div class="pill">Music • Anime • Style • Energy</div>
       </div>
 
       <div class="card-body">
 
         <div class="likes-group">
-          <h3 class="likes-title">Music &amp; Artists</h3>
+          <h3 class="likes-title">Music & Artists</h3>
           <div class="likes-grid">
-            <div class="likes-item">Drake</div>
-            <div class="likes-item">Brent Faiyaz</div>
-            <div class="likes-item">Bryson Tiller</div>
-            <div class="likes-item">Giveon</div>
-            <div class="likes-item">Odeal</div>
+            <div class="tag">Drake</div>
+            <div class="tag">Brent Faiyaz</div>
+            <div class="tag">Bryson Tiller</div>
+            <div class="tag">Giveon</div>
+            <div class="tag">Odeal</div>
           </div>
         </div>
 
         <div class="likes-group">
           <h3 class="likes-title">Anime</h3>
           <div class="likes-grid">
-            <div class="likes-item">Bleach</div>
-            <div class="likes-item">Tensura</div>
-            <div class="likes-item">Seven Deadly Sins</div>
+            <div class="tag">Bleach</div>
+            <div class="tag">Tensura</div>
+            <div class="tag">Seven Deadly Sins</div>
           </div>
         </div>
 
         <div class="likes-group">
           <h3 class="likes-title">Football</h3>
           <div class="likes-grid">
-            <div class="likes-item">FC Barcelona</div>
-            <div class="likes-item">Lamine Yamal</div>
-            <div class="likes-item">FC 26</div>
-            <div class="likes-item">eFootball</div>
+            <div class="tag">FC 26</div>
+            <div class="tag">eFootball</div>
+            <div class="tag">Lamine Yamal</div>
+            <div class="tag">FC Barcelona</div>
           </div>
         </div>
 
         <div class="likes-group">
-          <h3 class="likes-title">Style &amp; Aesthetic</h3>
+          <h3 class="likes-title">Style & Aesthetic</h3>
           <div class="likes-grid">
-            <div class="likes-item">Dark mode</div>
-            <div class="likes-item">Minimal layouts</div>
-            <div class="likes-item">Matte black</div>
-            <div class="likes-item">Clean fits</div>
-            <div class="likes-item">Low-noise UI</div>
+            <div class="tag">Dark mode</div>
+            <div class="tag">Minimal layouts</div>
+            <div class="tag">Matte black</div>
+            <div class="tag">Clean fits</div>
+            <div class="tag">Low-noise UI</div>
           </div>
         </div>
 
         <div class="likes-group">
-          <h3 class="likes-title">Vibe &amp; Energy</h3>
+          <h3 class="likes-title">Tech</h3>
           <div class="likes-grid">
-            <div class="likes-item">Calm</div>
-            <div class="likes-item">Focused</div>
-            <div class="likes-item">Low-key</div>
-            <div class="likes-item">Quiet confidence</div>
-            <div class="likes-item">Late-night playlists</div>
+            <div class="tag">iPhone</div>
+            <div class="tag">Minimal widgets</div>
+            <div class="tag">Smooth animations</div>
+          </div>
+        </div>
+
+        <div class="likes-group">
+          <h3 class="likes-title">Vibe & Energy</h3>
+          <div class="likes-grid">
+            <div class="tag">Calm</div>
+            <div class="tag">Focused</div>
+            <div class="tag">Low-key</div>
+            <div class="tag">Quiet confidence</div>
+            <div class="tag">Late-night playlists</div>
           </div>
         </div>
 
@@ -319,48 +330,34 @@
     <section class="card" data-panel="quick" hidden>
       <div class="card-header">
         <div class="card-title">Quick Picks</div>
-        <div class="pill">Favorites • Go‑tos</div>
+        <div class="pill">Essentials</div>
       </div>
 
       <div class="card-body">
+
         <div class="qp-group">
-          <h3 class="qp-title">Music</h3>
+          <h3 class="qp-title">Top</h3>
           <div class="qp-grid">
+            <div class="qp-item">Dark mode</div>
             <div class="qp-item">Drake</div>
-            <div class="qp-item">Brent Faiyaz</div>
-            <div class="qp-item">Bryson Tiller</div>
-            <div class="qp-item">Giveon</div>
-            <div class="qp-item">Khalid</div>
+            <div class="qp-item">FC Barcelona</div>
+            <div class="qp-item">Bleach</div>
+            <div class="qp-item">Calm energy</div>
           </div>
         </div>
 
-        <div class="qp-group">
-          <h3 class="qp-title">Aesthetic</h3>
-          <div class="qp-grid">
-            <div class="qp-item">Dark Mode</div>
-            <div class="qp-item">Minimal</div>
-            <div class="qp-item">Clean Layouts</div>
-            <div class="qp-item">Low‑Noise UI</div>
-          </div>
-        </div>
-
-        <div class="qp-group">
-          <h3 class="qp-title">Games</h3>
-          <div class="qp-grid">
-            <div class="qp-item">FC 26</div>
-            <div class="qp-item">eFootball</div>
-            <div class="qp-item">Soccer Mobile</div>
-          </div>
-        </div>
       </div>
     </section>
 
     <section class="card" data-panel="vibe" hidden>
-      <div class="eyebrow">My Vibe</div>
-      <div class="item"><div class="label">Privacy</div><div class="value">I'm cool with sharing interests and personality. The really personal stuff stays personal.</div></div>
-      <div class="item"><div class="label">Trust</div><div class="value">I'd rather build trust naturally than tell someone everything right away.</div></div>
-      <div class="item"><div class="label">Drama</div><div class="value">Not really my thing. If something's wrong, just talk about it.</div></div>
-      <div class="item"><div class="label">Energy</div><div class="value">Good conversations &gt; trying to impress each other.</div></div>
+      <div class="card-header">
+        <div class="card-title">My Vibe</div>
+        <div class="pill">Calm • Focused • Low‑key</div>
+      </div>
+
+      <div class="card-body">
+        <p>I keep things simple — dark mode, clean layouts, quiet confidence, and staying grounded.</p>
+      </div>
     </section>
   </main>
 
@@ -417,6 +414,26 @@
     }
 
     activateTab('me');
+  </script>
+
+  <script>
+  function syncTabFromHash() {
+    const hash = window.location.hash || '#me';
+    const target = hash.replace('#', '');
+
+    document.querySelectorAll('[data-panel]').forEach(panel => {
+      const active = panel.dataset.panel === target;
+      panel.hidden = !active;
+      panel.classList.toggle('active-panel', active);
+    });
+
+    document.querySelectorAll('[data-tab]').forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.tab === target);
+    });
+  }
+
+  window.addEventListener('hashchange', syncTabFromHash);
+  window.addEventListener('DOMContentLoaded', syncTabFromHash);
   </script>
 </body>
 </html>
